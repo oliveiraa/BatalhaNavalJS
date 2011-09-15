@@ -1,0 +1,8 @@
+This is just a sample game I have to develop for a School project.
+
+It's supposed to be a two player Naval Battle game.
+
+The teacher requested it to be done in VB6 and use Serial Ports to 
+connect two computers and each player would use one computer.
+
+I just figured it might be fun to do it with other technologies. My first attempt will be to use just Javascript and do it with Node.JS as the server and just Javascript on the client.
