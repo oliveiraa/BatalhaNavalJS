@@ -1,6 +1,12 @@
+style(type="text/css")
+  #shipsRemaining {
+    margin-top: 10px;
+  }
+
 div(class="content")
-  button(type="button", id="btnAddBlock")
-    Add Block
+  button(type="button", id="btnClearShips") Clear Ships
+  button(type="button", id="btnReady") Ready
+  div(id="shipsRemaining") Ships Remaining 5
 div(class="gameboard", id="gameboard")
 div(class="clearfix")
 script(type="text/javascript", src="/javascripts/main/board.js")
