@@ -1,0 +1,50 @@
+body {
+  padding: 50px;
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+a {
+  color: #00B7FF;
+}
+
+.clearfix:after 
+{
+  content: ".";
+  display: block;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+
+.content
+{
+  width: 300px;
+  float: left;
+}
+
+.gameboard
+{
+  float: left;
+  width: 320px;
+}
+
+.block
+{
+  width: 18px;
+  height: 18px;
+  border: solid 1px;
+  background: #FFFFFF repeat 0 0;
+  content: X;
+  float: left;
+}
+
+.playerBlock
+{
+  background: #4169E1 repeat 0 0;
+}
+
+.explodedBlock
+{
+  background: #FF0000 repeat 0 0;
+}
+
