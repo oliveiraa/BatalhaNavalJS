@@ -4,9 +4,24 @@ style(type="text/css")
   }
 
 div(class="content")
-  button(type="button", id="btnClearShips") Clear Ships
-  button(type="button", id="btnReady") Ready
-  div(id="shipsRemaining") Ships Remaining 5
+  div(class="status")
+    p Nome
+    input(type="text", id="txtName")
+  div(class="status") 
+    p Status
+    div(id="playerStatus") Aguardando Oponente
+    div(id="playerStatus") Selecione a posição de seus navios
+  div(class="status", id="divActions")
+    p Ações
+    span
+      button(type="button", id="btnClearShips") Limpar Navios
+      button(type="button", id="btnReady") Pronto!
+  div(class="status")
+    p Navios Disponíveis
+    span(id="shipsRemaining") 5
+  div(class="status")
+    p Oponente
+    span(id="otherPlayer") Aguardando
 div(class="gameboard", id="gameboard")
 div(class="clearfix")
 script(type="text/javascript", src="/javascripts/main/board.js")

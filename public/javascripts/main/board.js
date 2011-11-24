@@ -1,5 +1,6 @@
 var board = function() {
 
+  var initialPlayerShips = 5;
 	var playerShips = 5;
 
   function InitializeEvents() {
@@ -18,15 +19,15 @@ var board = function() {
   function AddShip(){
     $(this).addClass('playerBlock');
     playerShips = playerShips - 1;
-    $('#shipsRemaining').text('Ships Remaining ' + playerShips);
+    $('#shipsRemaining').text(playerShips);
     if(playerShips <= 0)
       $('.block').off('click', AddShip);
   }
   
   function ResetShipSelection() {
     $(".playerBlock").removeClass('playerBlock');
-    playerShips = 5;
-    $('#shipsRemaining').text('Ships Remaining ' + playerShips);
+    playerShips = initialPlayerShips;
+    $('#shipsRemaining').text(playerShips);
     $('.block').on('click',AddShip);
   }
 
@@ -35,12 +36,6 @@ var board = function() {
       InitializeEvents();
       this.ResetBoard();
       this.SelectShipsPosition();
-    },
-    
-    AddBlock: function() {
-      $board = $('#gameboard');
-      block = "<div class='block'></div>"
-      $board.append(block);      
     },
     
     ResetBoard: function() {

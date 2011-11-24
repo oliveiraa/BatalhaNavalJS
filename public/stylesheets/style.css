@@ -19,6 +19,7 @@ a {
 .content
 {
   width: 300px;
+  margin-right: 10px;
   float: left;
 }
 
@@ -34,7 +35,7 @@ a {
   height: 18px;
   border: solid 1px;
   background: #FFFFFF repeat 0 0;
-  content: X;
+  content: 'X';
   float: left;
 }
 
@@ -46,5 +47,19 @@ a {
 .explodedBlock
 {
   background: #FF0000 repeat 0 0;
+}
+
+.status
+{
+  text-align: center;
+}
+
+.status p 
+{  
+ background: #BFCCF5 repeat 0 0;
+ border: solid 1px #4169E1;
+ margin-bottom: 2px;
+ margin-top: 5px;
+ color: #FFFFFF;
 }
 
