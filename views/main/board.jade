@@ -9,13 +9,12 @@ div(class="content")
     input(type="text", id="txtName")
   div(class="status")
     p Status
-    div(id="playerStatus") Aguardando Oponente
     div(id="playerStatus") Selecione a posição de seus navios
   div(class="status", id="divActions")
     p Ações
     span
+      button(type="button", id="btnReady", style="display: none;") Pronto!
       button(type="button", id="btnClearShips") Limpar Navios
-      button(type="button", id="btnReady") Pronto!
       button(type="button", id="btnDirection") Horizontal
   div(class="status")
     p Navios Disponíveis
@@ -25,4 +24,5 @@ div(class="content")
     span(id="otherPlayer") Aguardando
 div(class="gameboard", id="gameboard")
 div(class="clearfix")
+script(type="text/javascript", src="/socket.io/socket.io.js")
 script(type="text/javascript", src="/javascripts/main/board.js")

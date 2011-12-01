@@ -5,8 +5,11 @@
 
 var express = require('express')
   , routes = require('./routes')
+  , websockets = require('./websockets')
+  , socket = require('socket.io')
 
 var app = module.exports = express.createServer();
+var io = module.exports = socket.listen(app);
 
 // Configuration
 
@@ -20,12 +23,16 @@ app.configure(function(){
 });
 
 app.configure('development', function(){
-  app.use(express.errorHandler({ dumpExceptions: true, showStack: true })); 
+  app.use(express.errorHandler({ dumpExceptions: true, showStack: true }));
 });
 
 app.configure('production', function(){
-  app.use(express.errorHandler()); 
+  app.use(express.errorHandler());
 });
+
+// Socket.IO
+
+websockets.websockets.initialize(io);
 
 // Routes
 

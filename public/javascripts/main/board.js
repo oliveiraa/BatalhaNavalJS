@@ -3,12 +3,32 @@ var board = function() {
   var initialPlayerShips = 4;
 	var playerShips = 4;
 	var shipSize = 4;
+	var socket = {};
 
   function InitializeEvents() {
     $('#btnClearShips').click(btnClearShipsClicked);
     $('#btnReady').click(btnReadyClicked);
     $('#btnDirection').click(btnDirectionClicked);
-  }
+    socket.on('message', function(message){
+      var msg = eval('(' + message + ')');
+      switch(msg.event) {
+        case 'GameCreated': {
+          UpdatePlayerStatus('Jogo Criado. Aguardando oponente');
+          $('#btnReady').hide();
+          break;
+        }
+        case 'OpponentArrived': {
+          UpdatePlayerStatus('Oponente escolhido');
+          $('#btnReady').hide();
+          $('#otherPlayer').text(msg.nome);
+        }
+      };
+    });
+  };
+
+  function InitializeVariables() {
+    socket = io.connect('http://localhost:3000');
+  };
 
   function btnDirectionClicked(){
     if($(this).text() === "Horizontal")
@@ -18,7 +38,10 @@ var board = function() {
   };
 
   function btnReadyClicked() {
-    $("#btnClearShips").hide();
+    $('#btnClearShips').hide();
+    $('#btnDirection').hide();
+    UpdatePlayerStatus('Aguardando oponente');
+    socket.emit('PlayerReady', { nome: $('#txtName').val() });
   }
 
   function btnClearShipsClicked() {
@@ -32,9 +55,16 @@ var board = function() {
       AddVerticalShip($(this));
     playerShips = playerShips - 1;
     $('#shipsRemaining').text(playerShips);
-    if(playerShips <= 0)
+    if(playerShips <= 0) {
       $('.block').off('click', AddShip);
+      $('#btnReady').show();
+      UpdatePlayerStatus('Aguardando Oponente');
+    }
   }
+
+  function UpdatePlayerStatus(status) {
+    $('#playerStatus').text(status);
+  };
 
   function AddHorizontalShip($ini) {
     $curr = $ini;
@@ -53,16 +83,18 @@ var board = function() {
     };
   };
 
-
   function ResetShipSelection() {
     $(".playerBlock").removeClass('playerBlock');
     playerShips = initialPlayerShips;
     $('#shipsRemaining').text(playerShips);
     $('.block').on('click',AddShip);
+    $('#playerStatus').text('Selecione a posição de seus navios');
+    $('#btnReady').hide();
   }
 
   return {
     Initialize: function() {
+      InitializeVariables();
       InitializeEvents();
       this.ResetBoard();
       this.SelectShipsPosition();
